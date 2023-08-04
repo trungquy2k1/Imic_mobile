@@ -4,8 +4,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 import {Home} from '../Screen/Home';
-import About from '../Screen/About';
-
+import MovieList from '../Screen/About';
+import ListMovie from '../Screen/ListPopularMovie';
 const TabBottom = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -21,8 +21,16 @@ const TabBottom = () => {
           ),
           tabBarLabelStyle: {fontSize: 16}
         }} />
-      <Tab.Screen name="About" component={About} options={{
-          tabBarLabel: 'About',
+      <Tab.Screen name="About" component={MovieList} options={{
+          tabBarLabel: 'Top rated movies',
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name="feed" color={color} size={36}  />
+          ),
+          tabBarLabelStyle: {fontSize: 16}
+        }} />
+
+<Tab.Screen name="ListPopular" component={ListMovie} options={{
+          tabBarLabel: 'ListPopular',
           tabBarIcon: ({color}) => (
             <MaterialIcons name="feed" color={color} size={36}  />
           ),

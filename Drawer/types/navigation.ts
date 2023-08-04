@@ -7,6 +7,7 @@ export type MainStackParamList = {
     About: undefined;
     Category: {title: string};
     Login: undefined;
+    ListPopularMovie: undefined;
 };
 export type CategoryRouteProp = RouteProp<MainStackParamList, 'Category'>;
 

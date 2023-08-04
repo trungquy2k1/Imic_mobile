@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, SafeAreaView } from 'react-native';
 import { View, FlatList, Text, StyleSheet, Image } from 'react-native';
+// import { Image } from 'react-native-reanimated/lib/typescript/Animated';
 
 //const API_URL = 'https://api.themoviedb.org/3/movie/top_rated?api_key=9efbd8cf655d649cbf935c88e6bc2d4c&language=en-US&page=1';
 interface Root {
@@ -28,14 +29,22 @@ type Result = {
 }
 // const [movies, setMovies] = useState<Root | undefined>();
 
-const MovieList = () => {
+const ListMovie = () => {
   const [data, setData] = useState<Root | undefined>();
   const [isLoading, setisLoading] = useState(true)
   
 
-  
+  // const fetchMovies = async () => {
+  //   try {
+  //     const response = await fetch(API_URL);
+  //     const data = await response.json();
+  //     setMovies(data.results);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const getListRate = () => {
-    const Url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=9efbd8cf655d649cbf935c88e6bc2d4c&language=en-US&page=1';
+    const Url = 'https://api.themoviedb.org/3/movie/popular?api_key=da7cd488ad26ec2c045e122bba134280&language=en-US&page=1';
     return fetch(Url)
     .then((res) => res.json())
     .then(json => {
@@ -91,7 +100,7 @@ const MovieComponent: React.FC<Props> = props =>{
   // console.log(props);
   return (
     <View>
-      <Text style={{textAlign: 'center', fontSize:30, color:'#000', marginBottom:10}}>Top rated movies</Text>
+      <Text style={{textAlign: 'center', fontSize:30, color:'#000', marginBottom:10}}>List Popular Movie</Text>
       <FlatList
       data={props.root.results}
         renderItem={renderMovie}
@@ -131,6 +140,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MovieList;
+export default ListMovie;
 
 
+
+
+// export default ListMovie;
