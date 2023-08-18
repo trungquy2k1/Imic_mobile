@@ -36,7 +36,7 @@
 // export default App;
 
 // import React from "react";
-import BaiTap6 from "./NetworkApi";
+// import BaiTap6 from "./NetworkApi";
 // import Home from "./Navigaion/Home";
 // import About from "./Navigaion/About";
 // import Login from "./Navigaion/Login";
@@ -44,5 +44,6 @@ import BaiTap6 from "./NetworkApi";
 // import {Index} from './Drawer';
 // import {Index} from './Screen';
 // import Index from "./Drawer/Navigation";
-import index from "./Bai9";
+// import index from "./Bai9";
+import index from "./Baitap7";
 export default index;
