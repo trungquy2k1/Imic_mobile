@@ -36,12 +36,13 @@
 // export default App;
 
 // import React from "react";
-// import {NetworkDemo} from './NetworkApi';
+import BaiTap6 from "./NetworkApi";
 // import Home from "./Navigaion/Home";
 // import About from "./Navigaion/About";
 // import Login from "./Navigaion/Login";
 // import TabBot from './Navigaion/Tabbottom';
 // import {Index} from './Drawer';
 // import {Index} from './Screen';
-import Index from "./Drawer/Navigation";
-export default Index;
+// import Index from "./Drawer/Navigation";
+import index from "./Bai9";
+export default index;

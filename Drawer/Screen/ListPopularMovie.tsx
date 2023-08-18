@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, SafeAreaView } from 'react-native';
 import { View, FlatList, Text, StyleSheet, Image } from 'react-native';
@@ -43,13 +44,31 @@ const ListMovie = () => {
   //     console.error(error);
   //   }
   // };
+  // const getListRate = () => {
+  //   const Url = 'https://api.themoviedb.org/3/movie/popular?api_key=da7cd488ad26ec2c045e122bba134280&language=en-US&page=1';
+  //   return fetch(Url)
+  //   .then((res) => res.json())
+  //   .then(json => {
+  //     return json as Root;
+  //   })
+  //   .catch((error) =>{
+  //     console.log('Error', error);
+  //     return undefined;
+  //   })
+  // }
+
   const getListRate = () => {
-    const Url = 'https://api.themoviedb.org/3/movie/popular?api_key=da7cd488ad26ec2c045e122bba134280&language=en-US&page=1';
-    return fetch(Url)
-    .then((res) => res.json())
-    .then(json => {
-      return json as Root;
-    })
+    //const Url = 'https://api.themoviedb.org/3/movie/popular?api_key=da7cd488ad26ec2c045e122bba134280&language=en-US&page=1';
+    return axios
+    .get<Root|undefined>(
+      'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1',
+      {
+        headers:{
+          Accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYTdjZDQ4OGFkMjZlYzJjMDQ1ZTEyMmJiYTEzNDI4MCIsInN1YiI6IjY0Y2NiMTE4NDNjZDU0MDBhZGQ2MzYwNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4S0IFxqpQhSUCyeT0IokQysIdZ9Jr3l03LWLEVTuOn8',
+        },
+      },
+    )
     .catch((error) =>{
       console.log('Error', error);
       return undefined;
@@ -57,7 +76,7 @@ const ListMovie = () => {
   }
 
   useEffect(() => {
-    getListRate().then(res => setData(res));
+    getListRate().then(res => setData(res?.data));
   }, []);
 
   
@@ -80,7 +99,7 @@ export interface Props {
 
 const MovieComponent: React.FC<Props> = props =>{
   // const { post } = props;
-  const renderMovie = ({ item }) => {
+  const renderMovie = ({ item }:any) => {
     const backdropUrl = `https://image.tmdb.org/t/p/w500/${item.backdrop_path}`;
 
     return (
@@ -102,7 +121,9 @@ const MovieComponent: React.FC<Props> = props =>{
     <View>
       <Text style={{textAlign: 'center', fontSize:30, color:'#000', marginBottom:10}}>List Popular Movie</Text>
       <FlatList
-      data={props.root.results}
+        contentInset={{top: 0, bottom: 180, left: 0, right: 0}}
+        contentInsetAdjustmentBehavior="automatic"
+        data={props.root.results}
         renderItem={renderMovie}
         keyExtractor={(item) => item.id.toString()}
       />
